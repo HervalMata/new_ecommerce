@@ -21,7 +21,7 @@ const AdminDashboard = () => {
             }
         ],
         options: {
-            color: ['#181EE8', '#181EE8'],
+            colors: ['#181EE8', '#181EE8'],
             plotOptions: {
                 radius: 30
             },
