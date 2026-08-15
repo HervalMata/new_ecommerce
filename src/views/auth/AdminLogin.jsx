@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
-import {useDispatch} from "react-redux";
-import {admin_login} from "../../store/Reducers/authReducer";
+import React, {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from "react-redux";
+import {admin_login, messageClear} from "../../store/Reducers/authReducer";
+import {PropagateLoader} from "react-spinners";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch()
+    const  { loader, errorMessage, successMessage } = useSelector(state => state.auth || {})
 
     const [state, setState] = useState({
         email: "",
@@ -21,6 +26,26 @@ const AdminLogin = () => {
         e.preventDefault()
         dispatch(admin_login(state))
     }
+
+    const overrideStyle = {
+        display: 'flex',
+        margin: '0 auto',
+        height: '24px',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    useEffect(() => {
+        if (errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+        if (successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+            navigate('/')
+        }
+    }, [dispatch, errorMessage, navigate, successMessage])
 
     return (
         <div className="min-w-screen min-h-screen bg-[#CDCAE9] flex items-center justify-center">
@@ -44,8 +69,9 @@ const AdminLogin = () => {
                                    className="py-2 px-3 outline-none border border-slate-400 bg-transparent rounded-md"
                                    placeholder="Digite sua senha" required/>
                         </div>
-                        <button type="submit"
-                                className="bg-slate-800 w-full hover:shadow-blue-300 hover:shadow-lg text-white rounded-md py-7 px-2 mb-3">Entrar
+                        <button disabled={!!loader} type="submit"
+                                className="bg-slate-800 w-full hover:shadow-blue-300 hover:shadow-lg text-white rounded-md py-7 px-2 mb-3">
+                            { loader ? <PropagateLoader color="#FFFFFF" cssOverride={overrideStyle} /> : 'Entrar' }
                         </button>
                     </form>
                 </div>
