@@ -1,10 +1,9 @@
 import {MdCurrencyExchange, MdProductionQuantityLimits} from "react-icons/md";
-import {FaUsers} from "react-icons/fa";
 import {FaCartShopping} from "react-icons/fa6";
-import Chart from 'react-apexcharts'
+import Chart from "react-apexcharts";
 import {Link} from "react-router-dom";
 
-const AdminDashboard = () => {
+const SellerDashboard = () => {
     const stats = {
         series: [
             {
@@ -66,6 +65,7 @@ const AdminDashboard = () => {
             ]
         }
     }
+
     return (
         <div className="px-2 md-px-7 py-5">
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-7">
@@ -94,19 +94,18 @@ const AdminDashboard = () => {
                 <div className="flex items-center justify-between p-5 bg-[#FAE8E8] rounded-md gap-3">
                     <div className="flex flex-col items-start justify-start text-[#5C5A5A]">
                         <h2 className="text-3xl font-bold">10</h2>
-                        <span className="text-md font-medium">Vendedores</span>
+                        <span className="text-md font-medium">Ordens</span>
                     </div>
                     <div className="w-[40px] h-[47px] rounded-full bg-[#FA0305] flex items-center justify-center
                                   text-xl">
-                        <FaUsers className="text-[#FAE8E8] shadow-lg" />
+                        <FaCartShopping className="text-[#FAE8E8] shadow-lg" />
                     </div>
                 </div>
 
-
                 <div className="flex items-center justify-between p-5 bg-[#FAE8E8] rounded-md gap-3">
                     <div className="flex flex-col items-start justify-start text-[#5C5A5A]">
-                        <h2 className="text-3xl font-bold">54</h2>
-                        <span className="text-md font-medium">Ordens</span>
+                        <h2 className="text-3xl font-bold">1</h2>
+                        <span className="text-md font-medium">Ordens Pendentes</span>
                     </div>
                     <div className="w-[40px] h-[47px] rounded-full bg-[#FA0305] flex items-center justify-center
                                   text-xl">
@@ -138,7 +137,7 @@ const AdminDashboard = () => {
                                     </div>
                                     <div className="p-3 bg-slate-800 rounded-lg border border-slate-600 shadow-sm">
                                         <div className="flex justify-between items-center mb-2">
-                                            <Link className="text-md font-normal">Admin</Link>
+                                            <Link className="text-md font-normal">Vendedor</Link>
                                             <time className="mb-1 tesxt-sm font-normal sm:order-last sm:mb-0">
                                                 2 dias atrás
                                             </time>
@@ -176,7 +175,7 @@ const AdminDashboard = () => {
                                     </div>
                                     <div className="p-3 bg-slate-800 rounded-lg border border-slate-600 shadow-sm">
                                         <div className="flex justify-between items-center mb-2">
-                                            <Link className="text-md font-normal">Admin</Link>
+                                            <Link className="text-md font-normal">Comprador</Link>
                                             <time className="mb-1 tesxt-sm font-normal sm:order-last sm:mb-0">
                                                 2 dias atrás
                                             </time>
@@ -211,15 +210,15 @@ const AdminDashboard = () => {
                         </tr>
                         </thead>
                         <tbody>
-                            {
-                                [1,2,3,4,5].map((d,i) => <tr key={i}>
-                                    <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>#34344</td>
-                                    <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>R$ 454,00</td>
-                                    <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>Pendente</td>
-                                    <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>Pendente</td>
-                                    <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'><Link>Vêja</Link> </td>
-                                </tr>)
-                            }
+                        {
+                            [1,2,3,4,5].map((d,i) => <tr key={i}>
+                                <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>#34344</td>
+                                <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>R$ 454,00</td>
+                                <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>Pendente</td>
+                                <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>Pendente</td>
+                                <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'><Link>Vêja</Link> </td>
+                            </tr>)
+                        }
                         </tbody>
                     </table>
                 </div>
@@ -228,4 +227,4 @@ const AdminDashboard = () => {
     )
 }
 
-export default AdminDashboard
+export default SellerDashboard;
