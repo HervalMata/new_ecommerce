@@ -11,7 +11,7 @@ const ChatSeller = () => {
             <div className="w-full px-4 py-4 bg-[#6A5FDF] rounded-md h-[calc(100vh-140px)]">
                 <div className="flex w-full h-full relative">
                     <div className={`w-[280px] h-full absolute z-10 ${
-                        show ? '-left-[16px]' : '-[336px]'
+                        show ? '-left-[16px]' : '-left-[336px]'
                     } md:left-0 md:relative transition-all`}>
                         <div className="w-fuul bg-[#9E97E9] md:bg-transparent overflow-x-auto h-[calc(100vh-177px)]">
                             <div className='flex text-xl justify-between items-center p-4 md:p-0 md:px-3 md:pb-3 text-white'>
