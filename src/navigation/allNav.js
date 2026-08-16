@@ -60,6 +60,6 @@ export const allNav = [
         title: 'Chat',
         icon: <IoIosChatbubbles />,
         role: 'admin',
-        path: '/admin/dashboard/chat-seller',
+        path: '/admin/dashboard/chat-sellers',
     }
 ]
