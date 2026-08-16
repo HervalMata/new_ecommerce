@@ -44,7 +44,9 @@ const Orders = () => {
                                 <div className="py-3 w-[13%] font-medium">R$ 654,00</div>
                                 <div className="py-3 w-[18%] font-medium">Pendente</div>
                                 <div className="py-3 w-[18%] font-medium">Pendente</div>
-                                <div className="py-3 w-[18%] font-medium"><Link>Veja</Link></div>
+                                <div className="py-3 w-[18%] font-medium">
+                                    <Link to={'/admin/dashboard/order/details/3'}>Veja</Link>
+                                </div>
                                 <div onClick={(e) => setShow(!show)}
                                      className="py-3 w-[8%] font-medium"><LuArrowDown/></div>
                             </div>

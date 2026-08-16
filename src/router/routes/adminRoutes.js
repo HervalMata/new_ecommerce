@@ -7,6 +7,7 @@ import DeactiveSellers from "../../views/admin/DeactiveSellers";
 import SellerRequest from "../../views/admin/SellerRequest";
 import SellerDetails from "../../views/admin/SellerDetails";
 import ChatSeller from "../../views/admin/ChatSeller";
+import OrderDetails from "../../views/admin/OrderDetails";
 
 export const adminRoutes = [
     {
@@ -52,6 +53,11 @@ export const adminRoutes = [
     {
         path: '/admin/dashboard/chat-sellers',
         element: <ChatSeller />,
+        role: 'admin',
+    },
+    {
+        path: '/admin/dashboard/order/details/:orderId',
+        element: <OrderDetails />,
         role: 'admin',
     }
 ]
