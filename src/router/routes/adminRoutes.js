@@ -2,6 +2,9 @@ import AdminDashboard from "../../views/admin/AdminDashboard";
 import Orders from "../../views/admin/Orders";
 import Category from "../../views/admin/Category";
 import Sellers from "../../views/admin/Sellers";
+import PaymentRequest from "../../views/admin/PaymentRequest";
+import DeactiveSellers from "../../views/admin/DeactiveSellers";
+import SellerRequest from "../../views/admin/SellerRequest";
 
 export const adminRoutes = [
     {
@@ -22,6 +25,21 @@ export const adminRoutes = [
     {
         path: '/admin/dashboard/sellers',
         element: <Sellers />,
+        role: 'admin',
+    },
+    {
+        path: '/admin/dashboard/payment-request',
+        element: <PaymentRequest />,
+        role: 'admin',
+    },
+    {
+        path: '/admin/dashboard/deactive-sellers',
+        element: <DeactiveSellers />,
+        role: 'admin',
+    },
+    {
+        path: '/admin/dashboard/seller-request',
+        element: <SellerRequest />,
         role: 'admin',
     }
 ]
