@@ -1,4 +1,6 @@
 import {lazy} from "react";
+const SellerToAdmin = lazy(() => import("../../views/seller/SellerToAdmin"));
+const SellerToCustomer = lazy(() => import("../../views/seller/SellerToCustomer"));
 const Payments = lazy(() => import("../../views/seller/Payments"));
 const Home = lazy(() => import("../../views/Home"));
 const SellerDashboard = lazy(() => import("../../views/seller/SellerDashboard"));
@@ -46,6 +48,24 @@ export const sellerRoutes = [
     {
         path: '/seller/dashboard/payments',
         element: <Payments />,
+        role: 'seller',
+        status: 'active',
+    },
+    {
+        path: '/seller/dashboard/chat-support',
+        element: <SellerToAdmin />,
+        ability: ['active', 'deactive', 'pending'],
+        status: 'active',
+    },
+    {
+        path: '/seller/dashboard/chat-customer',
+        element: <SellerToCustomer />,
+        role: 'seller',
+        status: 'active',
+    },
+    {
+        path: '/seller/dashboard/chat-customer/:customerId',
+        element: <SellerToCustomer />,
         role: 'seller',
         status: 'active',
     }
