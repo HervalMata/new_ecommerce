@@ -10,7 +10,7 @@ const Orders = () => {
     const [perPage, setPerPage] = useState(5);
 
     return (
-        <div className="px-2 lg-px-7 pt-5">
+        <div className="px-2 lg:px-7 pt-5">
             <h1 className="text-[#D0D2D6] font-semibold text-lg mb-3">Ordens</h1>
             <div className='w-full p-4 bg-[#6A5FDF] rounded-md'>
                 <Search setPerPage={setPerPage} setSearchValue={setSearchValue} searchValue={searchValue} />
