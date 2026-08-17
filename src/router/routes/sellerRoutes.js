@@ -1,8 +1,11 @@
-import Home from "../../views/Home";
-import SellerDashboard from "../../views/seller/SellerDashboard";
-import AddProduct from "../../views/seller/AddProduct";
-import Products from "../../views/seller/Products";
-import DiscountProducts from "../../views/seller/DiscountProducts";
+import {lazy} from "react";
+const Payments = lazy(() => import("../../views/seller/Payments"));
+const Home = lazy(() => import("../../views/Home"));
+const SellerDashboard = lazy(() => import("../../views/seller/SellerDashboard"));
+const AddProduct = lazy(() => import("../../views/seller/AddProduct"));
+const Products = lazy( () => import("../../views/seller/Products"));
+const DiscountProducts = lazy(() => import("../../views/seller/DiscountProducts"));
+const Orders = lazy(() => import("../../views/seller/Orders"));
 
 export const sellerRoutes = [
     {
@@ -13,21 +16,37 @@ export const sellerRoutes = [
     {
         path: '/seller/dashboard',
         element: <SellerDashboard />,
-        ability: ['seller'],
+        role: 'seller',
+        status: 'active',
     },
     {
         path: '/seller/dashboard/add-product',
         element: <AddProduct />,
-        ability: ['seller'],
+        role: 'seller',
+        status: 'active',
     },
     {
         path: '/seller/dashboard/products',
         element: <Products />,
-        ability: ['seller'],
+        role: 'seller',
+        status: 'active',
     },
     {
         path: '/seller/dashboard/discount-product',
         element: <DiscountProducts />,
-        ability: ['seller'],
+        role: 'seller',
+        status: 'active',
+    },
+    {
+        path: '/seller/dashboard/orders',
+        element: <Orders />,
+        role: 'seller',
+        status: 'active',
+    },
+    {
+        path: '/seller/dashboard/payments',
+        element: <Payments />,
+        role: 'seller',
+        status: 'active',
     }
 ]
