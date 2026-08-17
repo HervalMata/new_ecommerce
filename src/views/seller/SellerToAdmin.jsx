@@ -36,7 +36,7 @@ const SellerToAdmin = () => {
                                     <div className="flex justify-start items-start gap-2 md:px-3 py-2 max-w-full
                                                            lg:max-w-[85%]">
                                         <div className="flex justify-center items-start flex-col bg-red-500 shadow-lg
-                                                        shadow-red-500/50 text-white py-1 px-2 rounded-sm w-fulL">
+                                                        shadow-red-500/50 text-white py-1 px-2 rounded-sm w-full">
                                             <span>Como você está?</span>
                                         </div>
                                         <div>

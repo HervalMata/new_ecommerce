@@ -112,10 +112,17 @@ export const allNav = [
         path: '/seller/dashboard/chat-customer',
     },
     {
-        id: 10,
+        id: 16,
         title: 'Chat Suporte',
         icon: <AiOutlineDashboard />,
         role: 'seller',
         path: '/seller/dashboard/chat-support',
+    },
+    {
+        id: 17,
+        title: 'Perfil',
+        icon: <AiOutlineDashboard />,
+        role: 'seller',
+        path: '/seller/dashboard/profile',
     }
 ]

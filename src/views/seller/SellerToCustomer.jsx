@@ -19,7 +19,7 @@ const SellerToCustomer = () => {
                                 <span onClick={() =>setShow(!show)} className='block cursor-pointer md:hidden'><IoMdClose /></span>
                             </div>
                             <div className="h-[60px] flex justify-start gap-2 items-center text-white px-2 py-2
-                                              rounded-md cursor-pointer bg-[#8288ED">
+                                              rounded-md cursor-pointer bg-[#8288ED]">
                                 <div className="relative">
                                     <img className='w-[38px] h-[38px] border-white border-2 max-w-[38px] p-[2px] rounded-full'
                                          src="http://localhost:3000/images/admin.jpg" alt="" />
