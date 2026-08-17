@@ -81,7 +81,7 @@ export const allNav = [
         title: 'Produtos',
         icon: <AiOutlineDashboard />,
         role: 'seller',
-        path: '/seller/dashboard/all-product',
+        path: '/seller/dashboard/products',
     },
     {
         id: 12,

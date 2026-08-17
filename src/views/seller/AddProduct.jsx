@@ -95,7 +95,7 @@ const AddProduct = () => {
             <div className="w-full p-4 bg-[#6A5FDF] rounded-md">
                 <div className="flex items-center justify-between pb-4">
                     <h1 className="text-[#D0D2D6] font-semibold text-xl">Adicionar Produto</h1>
-                    <Link to={"/products"}
+                    <Link to={"/seller/dashboard/products"}
                           className='bg-blue-500 shadow-lg hover:shadow-blue-500/50 hover:shadow-lg px-7 py-2 my-2
                                    text-white rounded-sm'
                     >Todos os Produtos</Link>
@@ -123,7 +123,7 @@ const AddProduct = () => {
                         <div className="flex flex-col md:flex-row w-full gap-4 mb-3 text-[#D0D2D6]">
                             <div className="flex flex-col w-full gap-1 relative">
                                 <label htmlFor="category"> Categoria do Produto</label>
-                                <input readOnly onClick={() => setShow(!show)}
+                                <input readOnly value={category} onClick={() => setShow(!show)}
                                        className="px-4 py-2 focus:border-indigo-500
                               outline-none bg-[#6A5FDF] border border-slate-700 rounded-md text-[#D0D2D6]"
                                        type="text" id='category' name='category' placeholder="---Selecione a Categoria do Produto---" />
@@ -197,7 +197,7 @@ const AddProduct = () => {
                                 imageShow.map((img, i) =>
                                         <div className='h-[180px] relative'>
                                             <label htmlFor={i}>
-                                                <img className='w-full h-full rounded-sm' src={i} alt="" />
+                                                <img className='w-full h-full rounded-sm' src={img.url} alt="" />
                                             </label>
                                             <input
                                                 onChange={(e) => changeImage(e.target.files[0],i)}
