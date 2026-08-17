@@ -37,7 +37,7 @@ const Orders = () => {
                                         <div className='flex items-center justify-start gap-4'>
                                             <Link className='p-[6px] bg-green-500 rounded hover:shadow-lg
                                                         hover:shadow-green-500/50'
-                                                  to={``}><FaEye />
+                                                  to={`/seller/dashboard/order/details/34`}><FaEye />
                                             </Link>
                                         </div>
                                     </td>
