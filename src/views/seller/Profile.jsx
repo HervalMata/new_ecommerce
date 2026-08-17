@@ -10,7 +10,7 @@ const Profile = () => {
     return (
         <div className="px-2 lg:px-7 py-5">
             <div className="w-full flex flex-wrap">
-                <div className="w-full md:w-6/2">
+                <div className="w-full md:w-6/12">
                     <div className="w-full p-4 bg-[#6A5FDF] rounded-md">
                         <div className='flex items-center justify-center py-3'>
                             {
@@ -156,9 +156,11 @@ const Profile = () => {
                             }
                         </div>
                     </div>
+
+
                 </div>
 
-                <div className="w-full md:w-6/12 mt-2 ml-40">
+                <div className="w-full md:w-6/12">
                     <div className="w-full pl-0 md:pl-7 mt-6 md:mt-0">
                         <div className="bg-[#6A5FDF] rounded-md text-[#D0D2D6] p-4">
                             <h1 className="text-[#D0D2D] text-lg mb-3 font-semibold">Alterar Senha</h1>
@@ -194,6 +196,8 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+
+
         </div>
     )
 }
