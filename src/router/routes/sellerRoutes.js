@@ -1,11 +1,12 @@
 import {lazy} from "react";
+const Pending = lazy(() => import("../../views/Pending"));
+const Deactive = lazy(() => import("../../views/Deactive"));
 const OrderDetails = lazy(() => import("../../views/seller/OrderDetails"));
 const EditProduct = lazy(() => import("../../views/seller/EditProduct"));
 const Profile = lazy(() => import("../../views/seller/Profile"));
 const SellerToAdmin = lazy(() => import("../../views/seller/SellerToAdmin"));
 const SellerToCustomer = lazy(() => import("../../views/seller/SellerToCustomer"));
 const Payments = lazy(() => import("../../views/seller/Payments"));
-const Home = lazy(() => import("../../views/Home"));
 const SellerDashboard = lazy(() => import("../../views/seller/SellerDashboard"));
 const AddProduct = lazy(() => import("../../views/seller/AddProduct"));
 const Products = lazy( () => import("../../views/seller/Products"));
@@ -14,9 +15,14 @@ const Orders = lazy(() => import("../../views/seller/Orders"));
 
 export const sellerRoutes = [
     {
-        path: '/',
-        element: <Home />,
-        ability: ['admin', 'seller'],
+        path: "/seller/account-pending",
+        element: <Pending />,
+        ability: 'seller',
+    },
+    {
+        path: "/seller/account-deactive",
+        element: <Deactive />,
+        ability: 'seller',
     },
     {
         path: '/seller/dashboard',
@@ -46,7 +52,7 @@ export const sellerRoutes = [
         path: '/seller/dashboard/orders',
         element: <Orders />,
         role: 'seller',
-        status: 'active',
+        visibility: ['active', 'deactive'],
     },
     {
         path: '/seller/dashboard/payments',
@@ -57,7 +63,7 @@ export const sellerRoutes = [
     {
         path: '/seller/dashboard/chat-support',
         element: <SellerToAdmin />,
-        ability: ['active', 'deactive', 'pending'],
+        visibility: ['active', 'deactive', 'pending'],
     },
     {
         path: '/seller/dashboard/chat-customer',
@@ -87,6 +93,6 @@ export const sellerRoutes = [
         path: '/seller/dashboard/order/details/:orderId',
         element: <OrderDetails />,
         role: 'seller',
-        ability: ['active', 'deactive'],
+        visibility: ['active', 'deactive'],
     }
 ]

@@ -1,8 +1,16 @@
-import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react'
+import {Link, useNavigate} from "react-router-dom";
 import {FaFacebook, FaGoogle} from "react-icons/fa";
+import {useDispatch, useSelector} from "react-redux";
+import {messageClear, seller_login} from "../../store/Reducers/authReducer";
+import toast from "react-hot-toast";
+import {PropagateLoader} from "react-spinners";
+import {overrideStyle} from "../../utils/utils";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const { loader, successMessage, errorMessage  } = useSelector((state) => state.auth)
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -17,8 +25,20 @@ const Login = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    console.log(state)
+    dispatch(seller_login(state))
   }
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage)
+      dispatch(messageClear())
+      navigate('/')
+    }
+    if (errorMessage) {
+      toast.error(errorMessage)
+      dispatch(messageClear())
+    }
+  }, [successMessage,errorMessage]);
 
   return (
       <div className="min-w-screen min-h-screen bg-[#CDCAE9] flex items-center justify-center">
@@ -39,8 +59,13 @@ const Login = () => {
                        className="py-2 px-3 outline-none border border-slate-400 bg-transparent rounded-md"
                        placeholder="Digite sua senha" required/>
               </div>
-              <button type="submit"
-                      className="bg-slate-800 w-full hover:shadow-blue-300 hover:shadow-lg text-white rounded-md py-7 px-2 mb-3">Entrar
+              <button type="submit" disabled={!!loader}
+                      className="bg-slate-800 w-full hover:shadow-blue-300 hover:shadow-lg text-white rounded-md py-7 px-2 mb-3">
+                {
+                  loader ?
+                      <PropagateLoader color="#FFFFFF" cssOverride={overrideStyle} />
+                      : 'Entrar'
+                }
               </button>
               <div className="flex items-center mb-3 gap-3 justify-center">
                 <p>Não tem uma conta? <Link classname="font-bold" to="/register">Cadastre-se</Link></p>
