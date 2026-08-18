@@ -10,7 +10,7 @@ import {overrideStyle} from "../../utils/utils";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const { loader, successMessage, errorMessage  } = useSelector((state) => state.auth)
+  const { loader, successMessage, errorMessage  } = useSelector((state) => state.auth || {})
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -38,7 +38,7 @@ const Login = () => {
       toast.error(errorMessage)
       dispatch(messageClear())
     }
-  }, [successMessage,errorMessage]);
+  }, [successMessage, errorMessage, dispatch, navigate]);
 
   return (
       <div className="min-w-screen min-h-screen bg-[#CDCAE9] flex items-center justify-center">

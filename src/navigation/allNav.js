@@ -96,7 +96,7 @@ export const allNav = [
     },
     {
         id: 13,
-        title: 'ordens',
+        title: 'Ordens',
         icon: <BsCartCheck />,
         role: 'seller',
         path: '/seller/dashboard/orders',

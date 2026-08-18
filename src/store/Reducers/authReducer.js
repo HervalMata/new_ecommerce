@@ -52,7 +52,7 @@ export const get_user_info = createAsyncThunk(
     'auth/get_user_info',
     async (_, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const { data } = await api.post('/get-user', {withCredentials: true});
+            const { data } = await api.post('/get-user', undefined, {withCredentials: true});
             //console.log(data);
             return fulfillWithValue(data)
         } catch (error) {
@@ -72,6 +72,7 @@ const returnRole = (token) => {
             return decodedToken.role
         }
     } else {
+        localStorage.removeItem('accessToken');
         return ''
     }
 }
@@ -105,7 +106,7 @@ export const authReducer = createSlice({
                 state.loader = false;
                 state.successMessage = payload.message;
                 state.token = payload.token;
-                state.role = returnRole(payload.role);
+                state.role = returnRole(payload.token);
             })
             .addCase(seller_register.pending, (state, { payload }) => {
                 state.loader = true;
@@ -115,10 +116,10 @@ export const authReducer = createSlice({
                 state.errorMessage = payload.error;
             })
             .addCase(seller_register.fulfilled, (state, { payload }) => {
-                state.loader = true;
+                state.loader = false;
                 state.successMessage = payload.message;
                 state.token = payload.token;
-                state.role = returnRole(payload.role);
+                state.role = returnRole(payload.token);
             })
             .addCase(seller_login.pending, (state, { payload }) => {
                 state.loader = true;
@@ -131,7 +132,7 @@ export const authReducer = createSlice({
                 state.loader = true;
                 state.successMessage = payload.message;
                 state.token = payload.token;
-                state.role = returnRole(payload.role);
+                state.role = returnRole(payload.token);
             })
             .addCase(get_user_info.fulfilled, (state, { payload }) => {
                 state.loader = true;

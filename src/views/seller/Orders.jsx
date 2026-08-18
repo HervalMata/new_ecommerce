@@ -1,6 +1,6 @@
 import Search from "../Search";
 import {Link} from "react-router-dom";
-import {FaEdit, FaEye, FaTrash} from "react-icons/fa";
+import {FaEye} from "react-icons/fa";
 import Pagination from "../Pagination";
 import {useState} from "react";
 

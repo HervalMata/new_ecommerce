@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
 
 const EditProduct = () => {
     const categories = [
@@ -35,7 +34,6 @@ const EditProduct = () => {
     const [category, setCategory] = useState('');
     const [allCategory, setAllCategory] = useState(categories);
     const [searchValue, setSearchValue] = useState('');
-    const [images, setImages] = useState([])
     const [imageShow, setImageShow] = useState([]);
 
     const changeImage = (img, files) => {
