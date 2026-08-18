@@ -39,7 +39,7 @@ const Register = () => {
             toast.error(errorMessage)
             dispatch(messageClear())
         }
-    }, [successMessage,errorMessage]);
+    }, [successMessage, errorMessage, dispatch, navigate]);
 
 
     return (

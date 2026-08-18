@@ -9,7 +9,7 @@ const ProtectRoute = ({route, children}) => {
         if (route.role) {
             if (userInfo) {
                 if (userInfo.role === route.role) {
-                    if (route.status === userInfo.satatus) {
+                    if (route.status === userInfo.status) {
                         return <Suspense fallback={null}>{children}</Suspense>
                     } else {
                         if (userInfo.status === 'pending') {

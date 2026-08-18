@@ -1,6 +1,6 @@
 const UnAuthorized = () => {
     return (
-        <div></div>
+        <div>Não Autorizado</div>
     )
 }
 
