@@ -10,7 +10,7 @@ import {overrideStyle} from "../../utils/utils";
 const EditProduct = () => {
     const { productId } = useParams();
     const dispatch = useDispatch()
-    const { categories } = useSelector(state => state.categories || []);
+    const { categories = [] } = useSelector(state => state.category ?? {});
     const { product, loader, successMessage, errorMessage } = useSelector(state => state.product || {});
 
     const [state, setState] = useState({
@@ -28,10 +28,10 @@ const EditProduct = () => {
     const [searchValue, setSearchValue] = useState('');
     const [imageShow, setImageShow] = useState([]);
 
-    const changeImage = (img, files) => {
+    const changeImage = (oldImage, files) => {
         if (files.length > 0) {
             dispatch(product_image_update({
-                oldImage: img,
+                oldImage,
                 newImage: files[0],
                 productId,
             }))
@@ -59,6 +59,7 @@ const EditProduct = () => {
     const updateProduct = (e) => {
         e.preventDefault();
         const obj = {
+            category,
             name: state.name,
             description: state.description,
             discount: state.discount,
@@ -71,17 +72,18 @@ const EditProduct = () => {
     }
 
     useEffect(() => {
+        if (!product) return
         setState({
-            name: product.name,
-            description: product.description,
-            discount: product.discount,
-            price: product.price,
-            brand: product.brand,
-            stock: product.stock,
+            name: product.name ?? '',
+            description: product.description ?? '',
+            discount: product.discount ?? '',
+            price: product.price ?? '',
+            brand: product.brand ?? '',
+            stock: product.stock ?? '',
         })
         setCategory(product.category);
         setImageShow(product.images);
-    }, []);
+    }, [product]);
 
     useEffect(() => {
         dispatch(get_category({
@@ -225,7 +227,7 @@ const EditProduct = () => {
                                                 <img className='w-full h-full rounded-sm' src={img} alt="" />
                                             </label>
                                             <input
-                                                onChange={(e) => changeImage(e.target.files[0],i)}
+                                                onChange={(e) => changeImage(img, e.target.files[0],i)}
                                                 type="file" id={i} className='hidden' />
 
                                         </div>

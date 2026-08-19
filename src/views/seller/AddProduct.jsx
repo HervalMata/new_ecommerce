@@ -10,7 +10,7 @@ import {overrideStyle} from "../../utils/utils";
 
 const AddProduct = () => {
     const dispatch = useDispatch()
-    const { categories } = useSelector(state => state.categories || []);
+    const { categories = [] } = useSelector(state => state.category ?? {});
     const { loader, successMessage, errorMessage, products = []  } = useSelector((state) => state.product ?? {})
 
     const [state, setState] = useState({
@@ -40,7 +40,6 @@ const AddProduct = () => {
             imageUrl.push({ url: URL.createObjectURL(files[i]) })
         }
         setImageShow([...imageShow, ...imageUrl])
-        //console.log(images)
     }
 
     const changeImage = (img, index) => {
@@ -84,7 +83,7 @@ const AddProduct = () => {
         formData.append('discount', state.discount);
         formData.append('brand', state.brand);
         formData.append('shopName', 'Cris Laços');
-        formData.append('category', state.category);
+        formData.append('category', category);
 
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i]);

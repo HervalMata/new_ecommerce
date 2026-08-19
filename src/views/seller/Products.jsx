@@ -56,7 +56,7 @@ const Products = () => {
                                 <td className='py-1 px-4 font-medium whitespace-nowrap'>{d?.name?.slice(0,15)}...</td>
                                 <td className='py-1 px-4 font-medium whitespace-nowrap'>{d.category}</td>
                                 <td className='py-1 px-4 font-medium whitespace-nowrap'>{d.brand}</td>
-                                <td className='py-1 px-4 font-medium whitespace-nowrap'>R$ {d.price.toLocaleString("pt-BR")}</td>
+                                <td className='py-1 px-4 font-medium whitespace-nowrap'>R$ {d.price.toLocaleString("pt-BR", {})}</td>
                                 <td className='py-1 px-4 font-medium whitespace-nowrap'>
                                     {
                                         d.discount === 0 ?
@@ -64,7 +64,7 @@ const Products = () => {
                                             <span>{d.discount}%</span>
                                     }
                                 </td>
-                                <td className='py-1 px-4 font-medium whitespace-nowrap'>{d.stack}</td>
+                                <td className='py-1 px-4 font-medium whitespace-nowrap'>{d.stock}</td>
                                 <td className='py-1 px-4 font-medium whitespace-nowrap'>
                                     <div className='flex items-center justify-start gap-4'>
                                         <Link className='p-[6px] bg-yellow-500 rounded hover:shadow-lg
@@ -94,7 +94,7 @@ const Products = () => {
                         <Pagination
                             pageNumber={currentPage}
                             setPageNumber={setCurrentPage}
-                            totalItem={50}
+                            totalItem={totalProduct}
                             perPage={perPage}
                             showItem={3}
                         />
