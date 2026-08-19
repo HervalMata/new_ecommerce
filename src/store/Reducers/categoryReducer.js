@@ -12,7 +12,8 @@ export const categoryAdd = createAsyncThunk(
             //console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            const data = error?.response?.data;
+            return rejectWithValue({error: data?.error ?? data?.message ?? error?.message ?? "Request failed"});
         }
     }
 )
@@ -25,7 +26,8 @@ export const get_category = createAsyncThunk(
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            const data = error?.response?.data;
+            return rejectWithValue({error: data?.error ?? data?.message ?? error?.message ?? "Request failed"});
         }
     }
 )

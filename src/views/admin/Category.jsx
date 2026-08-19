@@ -6,15 +6,14 @@ import {IoMdCloseCircle} from "react-icons/io";
 import {PropagateLoader} from "react-spinners";
 import {overrideStyle} from "../../utils/utils";
 import {useDispatch, useSelector} from "react-redux";
-import {categoryAdd, get_category} from "../../store/Reducers/categoryReducer";
+import {categoryAdd, get_category, messageClear} from "../../store/Reducers/categoryReducer";
 import toast from "react-hot-toast";
-import {messageClear} from "../../store/Reducers/authReducer";
 import Search from "../Search";
 
 const Category = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const { loader, successMessage, errorMessage, categories  } = useSelector((state) => state.auth || {})
+    const { loader, successMessage, errorMessage, categories = []  } = useSelector((state) => state.category ?? {})
     const [currentPage, setCurrentPage] = useState(1);
     const [searchValue, setSearchValue] = useState('')
     const [perPage, setPerPage] = useState(5);
@@ -99,12 +98,12 @@ const Category = () => {
                                 {
                                     categories.map((d,i) =>
                                     <tr key={i}>
-                                        <td className='py-3 px-4 font-medium whitespace-nowrap'>{d}</td>
+                                        <td className='py-3 px-4 font-medium whitespace-nowrap'>{d.id}</td>
                                         <td className='py-3 px-4 font-medium whitespace-nowrap'>
                                             <img className='w-[45px] h-[45px]'
                                                 src={d.image} alt="" />
                                         </td>
-                                        <td className='py-3 px-4 font-medium whitespace-nowrap'>{d.image}</td>
+                                        <td className='py-3 px-4 font-medium whitespace-nowrap'>{d.name}</td>
                                         <td className='py-3 px-4 font-medium whitespace-nowrap'>
                                             <div className="flex items-center justify-start gap-4">
                                                 <Link className="p-[6px] bg-yellow-500 rounded hover:shadow-lg

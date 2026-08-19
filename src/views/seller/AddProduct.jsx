@@ -1,26 +1,17 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
+import {useDispatch, useSelector} from "react-redux";
+import {get_category} from "../../store/Reducers/categoryReducer";
+import {add_product, categories, messageClear} from "../../store/Reducers/productReducer";
+import toast from "react-hot-toast";
+import {PropagateLoader} from "react-spinners";
+import {overrideStyle} from "../../utils/utils";
 
 const AddProduct = () => {
-    const categories = [
-        {
-            id: 1,
-            name: 'Laços'
-        },
-        {
-            id: 2,
-            name: 'Tiaras'
-        },
-        {
-            id: 3,
-            name: 'Viseiras'
-        },
-        {
-            id: 4,
-            name: 'Faixas'
-        }
-    ]
+    const dispatch = useDispatch()
+    const { categories } = useSelector(state => state.categories || []);
+    const { loader, successMessage, errorMessage, products = []  } = useSelector((state) => state.product ?? {})
 
     const [state, setState] = useState({
         name: "",
@@ -33,7 +24,7 @@ const AddProduct = () => {
 
     const [show, setShow] = useState(false);
     const [category, setCategory] = useState('');
-    const [allCategory, setAllCategory] = useState(categories);
+    const [allCategory, setAllCategory] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [images, setImages] = useState([])
     const [imageShow, setImageShow] = useState([]);
@@ -83,12 +74,67 @@ const AddProduct = () => {
         }
     }
 
+    const addProduct = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('name', state.name);
+        formData.append('description', state.description);
+        formData.append('price', state.price);
+        formData.append('stock', state.stock);
+        formData.append('discount', state.discount);
+        formData.append('brand', state.brand);
+        formData.append('shopName', 'Cris Laços');
+        formData.append('category', state.category);
+
+        for (let i = 0; i < images.length; i++) {
+            formData.append('images', images[i]);
+        }
+
+        dispatch(add_product(formData))
+    }
+
     const inputHandle = (e) => {
         setState({
             ...state,
             [e.target.name]: e.target.value,
         })
     }
+
+    useEffect(() => {
+        dispatch(get_category({
+            searchValue: '',
+            perPage: '',
+            page: '',
+        }))
+    }, []);
+
+    useEffect(() => {
+        setAllCategory(categories);
+    }, [categories]);
+
+    useEffect(() => {
+        if (successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+            setState({
+                name: '',
+                description: '',
+                discount: '',
+                price: '',
+                brand: '',
+                stock: '',
+            })
+            setImageShow([])
+            setImages([])
+            setCategory('')
+        }
+
+        if (errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+    }, [successMessage, errorMessage, dispatch]);
+
 
     return (
         <div className="px-2 md-px-7 py-5">
@@ -101,7 +147,7 @@ const AddProduct = () => {
                     >Todos os Produtos</Link>
                 </div>
                 <div>
-                    <form>
+                    <form onSubmit={addProduct}>
                         <div className="flex flex-col md:flex-row w-full gap-4 mb-3 text-[#D0D2D6]">
                             <div className="flex flex-col w-full gap-1">
                                 <label htmlFor="name"> Nome do Produto</label>
@@ -225,7 +271,11 @@ const AddProduct = () => {
                         <div className="flex">
                             <button className="bg-red-500 hover:shadow-red-500/40 hover:shadow-md text-white
                                        rounded-md px-7 py-2 my-2 w-full"
-                                    type="submit">Adicionar Produto</button>
+                                    type="submit" disabled={!!loader}>
+                                {
+                                    loader ? <PropagateLoader color="#FFFFFF" cssOverride={overrideStyle} /> : 'Adicionar Produto'
+                                }
+                            </button>
                         </div>
                     </form>
                 </div>
