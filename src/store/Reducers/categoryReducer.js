@@ -9,7 +9,6 @@ export const categoryAdd = createAsyncThunk(
             formData.append("name", name);
             formData.append("image", image);
             const { data } = await api.post('/category-add', formData, {withCredentials: true});
-            //console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
             const data = error?.response?.data;
@@ -23,7 +22,6 @@ export const get_category = createAsyncThunk(
     async ({ perPage, page, searchValue }, {rejectWithValue, fulfillWithValue}) => {
         try {
             const { data } = await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, {withCredentials: true});
-            console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
             const data = error?.response?.data;
@@ -60,6 +58,9 @@ export const categoryReducer = createSlice({
                 state.loader = false;
                 state.successMessage = payload.message;
                 state.categories = [...state.categories,payload.category];
+            })
+            .addCase(get_category.rejected, (state, { payload, error }) => {
+                state.errorMessage = payload?.error ?? error?.message ?? "Request failed";
             })
             .addCase(get_category.fulfilled, (state, { payload }) => {
                 state.categories = payload.category;

@@ -44,7 +44,7 @@ export const update_product = createAsyncThunk(
     'product/update_product',
     async (product, {rejectWithValue, fulfillWithValue}) => {
         try {
-            const { data } = await api.put(`/product-update`, product, {withCredentials: true});
+            const { data } = await api.post(`/product-update`, product, {withCredentials: true});
             return fulfillWithValue(data)
         } catch (error) {
             const data = error?.response?.data;
@@ -122,6 +122,7 @@ export const productReducer = createSlice({
                 state.successMessage = payload.message;
                 state.product = payload.product;
             })
+
     }
 })
 
